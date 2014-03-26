@@ -30,8 +30,9 @@ T_L = trapz(xi, y1_L - y2_L);
 T_S = trapz(xi, y1_S - y2_S);
 
 % Output the results
+fprintf('\nInterpolation results:\nxi   y1_L   y2_L   y1_S   y2_S\n');
+[xi' y1_L' y2_L' y1_S' y2_S']
+
 fprintf('Wing area of two interpolation methods:\n');
 fprintf('    Linear:%f,    Spline:%f\n', T_L, T_S);
 
-fprintf('\nInterpolation results:\nxi   y1_L   y2_L   y1_S   y2_S\n');
-[xi' y1_L' y2_L' y1_S' y2_S']
