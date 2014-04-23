@@ -8,6 +8,7 @@ beta = x(3);
 K = KL(:, 1);
 L = KL(:, 2);
 
+% f(x)=aK^¦Á L^¦Â
 out = a .* (K .^ alpha) .* (L .^ beta);
 
 end
