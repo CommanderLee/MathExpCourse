@@ -38,7 +38,3 @@ elseif Problem == 3
     disp('Problem 1');
     [x f exitflag output lambda] = linprog(c, A1, b1, [], [], v1)
 end
-    
-
-
-
