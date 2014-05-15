@@ -29,10 +29,10 @@ v2 = [1 1 1];
 x0 = [0.3 0.3 0.4];
 opt = optimset('largescale' ,'off', 'MaxIter', 3000, 'MaxFun', 100000);
 
-problem = 2;
+problem = 3;
 if problem == 0
     display('problem0');
-	Target = 1.93;
+	Target = 1.15;
 	b1 = -Target;
     [x, fv, ef, out] = quadprog(H, [], A1, b1, A2, b2, v1, v2, x0, opt)
 elseif problem == 1
@@ -69,7 +69,23 @@ elseif problem == 2
     x0 = 0.25 .* ones(1, 4);
     [x, fv, ef, out] = quadprog(H, [], A1, b1, A2, b2, v1, v2, x0, opt)
 elseif problem == 3
-	
+    w = [0.5 0.35 0.15];
+    
+	H_ = zeros(9, 9);
+    H_(1:3, 1:3) = H;
+    A1_ = zeros(1, 9);
+    A1_(1, 1:3) = A1;
+    b1_ = -Target;
+    A2_ = [ones(1, 9) * 0.01;
+        1 0 0 -1 0 0 1 0 0;
+        0 1 0 0 -1 0 0 1 0;
+        0 0 1 0 0 -1 0 0 1];
+    A2_(1, 1:3) = A2;
+    b2_ = [b2 w];
+    v1_ = zeros(1, 9);
+    v2_ = ones(1, 9);
+    x0_ = [0.3 0.3 0.4 0 0 0 0 0 0];
+    [x, fv, ef, out] = quadprog(H_, [], A1_, b1_, A2_, b2_, v1_, v2_, x0_, opt)
 end
     
 
